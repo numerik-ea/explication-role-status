@@ -41,6 +41,14 @@
             border-bottom: 1px solid #ccc;
             padding-bottom: 0.5rem;
         }
+        footer {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1rem;
+            text-align: center;
+            border-top: 1px solid #ccc;
+            color: #666;
+        }
     </style>
 </head>
 <body>
@@ -82,5 +90,9 @@
         });
     </script>
 </main>
+<footer>
+    © <span id="year"></span> - <a href="https://www.numerik-ea.fr/">numerik-ea.fr</a> | <a href="https://github.com/numerik-ea/explication-role-status">Contribuer à cette page</a>
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</footer>
 </body>
 </html>
