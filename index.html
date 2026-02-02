@@ -10,10 +10,13 @@
         }
         body {
             font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        main {
             max-width: 800px;
             margin: 2rem auto;
             padding: 1rem;
-            overflow-x: hidden;
         }
         button {
             padding: 0.5rem 1rem;
@@ -41,6 +44,7 @@
     </style>
 </head>
 <body>
+<main>
     <h1>Démonstration du bug role="status"</h1>
 
     <h2>❌ Bug : Non vocalisé (élément ajouté avec contenu)</h2>
@@ -77,5 +81,6 @@
             status.textContent = 'Message VOCALISÉ : opération terminée avec succès !';
         });
     </script>
+</main>
 </body>
 </html>
