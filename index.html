@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bug role="status" - Non vocalisé</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1rem;
+        }
+        button {
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            margin: 0.5rem;
+            cursor: pointer;
+        }
+        .status-message {
+            padding: 1rem;
+            margin: 1rem 0;
+            background-color: #e7f3fe;
+            border-left: 4px solid #2196F3;
+        }
+        .status-message:empty {
+            padding: 0;
+            margin: 0;
+            border: none;
+            background: none;
+        }
+        h2 {
+            margin-top: 2rem;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>Démonstration du bug role="status"</h1>
+
+    <h2>❌ Bug : Non vocalisé (élément ajouté avec contenu)</h2>
+    <p>L'élément avec role="status" est créé et ajouté au DOM avec son contenu déjà présent. Le lecteur d'écran ne le vocalise pas.</p>
+    <button id="btn-bug">Déclencher le bug</button>
+    <div id="container-bug"></div>
+
+    <h2>✅ Solution : Vocalisé (élément déjà présent dans le HTML)</h2>
+    <p>L'élément avec role="status" existe déjà dans le HTML (vide). Le JavaScript ne fait que modifier son contenu.</p>
+    <button id="btn-fix">Déclencher la solution</button>
+    <div id="status-fix" role="status" class="status-message"></div>
+
+    <script>
+        // ❌ BUG : L'élément est ajouté avec son contenu déjà présent
+        // Le lecteur d'écran ne détecte pas le changement
+        document.getElementById('btn-bug').addEventListener('click', function() {
+            const container = document.getElementById('container-bug');
+            container.innerHTML = ''; // Nettoyer
+
+            // Création de l'élément avec le contenu déjà dedans
+            const status = document.createElement('div');
+            status.setAttribute('role', 'status');
+            status.className = 'status-message';
+            status.textContent = 'Message NON vocalisé : opération terminée avec succès !';
+
+            // Ajout au DOM avec le contenu déjà présent = pas de vocalisation
+            container.appendChild(status);
+        });
+
+        // ✅ SOLUTION : L'élément role="status" est déjà dans le HTML
+        // On modifie simplement son contenu
+        document.getElementById('btn-fix').addEventListener('click', function() {
+            const status = document.getElementById('status-fix');
+            status.textContent = 'Message VOCALISÉ : opération terminée avec succès !';
+        });
+    </script>
+</body>
+</html>
