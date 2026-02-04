@@ -76,7 +76,11 @@
             const status = document.createElement('div');
             status.setAttribute('role', 'status');
             status.className = 'status-message';
-            status.textContent = 'Message NON vocalisé : opération terminée avec succès !';
+
+            const paragraph = document.createElement('p');
+            paragraph.textContent = 'Message NON vocalisé !';
+            
+            status.appendChild(paragraph);
 
             // Ajout au DOM avec le contenu déjà présent = pas de vocalisation
             container.appendChild(status);
@@ -86,7 +90,12 @@
         // On modifie simplement son contenu
         document.getElementById('btn-fix').addEventListener('click', function() {
             const status = document.getElementById('status-fix');
-            status.textContent = 'Message VOCALISÉ : opération terminée avec succès !';
+
+            const paragraph = document.createElement('p');
+            paragraph.textContent = 'Message VOCALISÉ !';
+
+            status.innerHTML = ''; // Nettoyer
+            status.appendChild(paragraph);
         });
     </script>
 </main>
